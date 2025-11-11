@@ -1,0 +1,417 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 11,
+    "passes": 10,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-10-19T15:41:14.499Z",
+    "end": "2025-10-19T15:41:19.199Z",
+    "duration": 4700,
+    "testsRegistered": 11,
+    "passPercent": 90.9090909090909,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "75f826a1-2b11-4177-a448-8a0fecbbe363",
+      "title": "",
+      "fullFile": "C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\test\\api.test.js",
+      "file": "\\test\\api.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "895d054e-a1bc-463f-b93a-67121b692c33",
+          "title": "API Endpoints Testing",
+          "fullFile": "C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\test\\api.test.js",
+          "file": "\\test\\api.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"API Endpoints Testing\"",
+              "fullTitle": "API Endpoints Testing \"before all\" hook in \"API Endpoints Testing\"",
+              "timedOut": false,
+              "duration": 2804,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(35000);\nawait waitForMongooseConnection();\nawait Product.deleteMany({});\nawait Activity.deleteMany({});\ncreateDummyFile(dummyFilePath);",
+              "err": {},
+              "uuid": "860af9a2-209e-45f2-be33-622b46d95613",
+              "parentUUID": "895d054e-a1bc-463f-b93a-67121b692c33",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"API Endpoints Testing\"",
+              "fullTitle": "API Endpoints Testing \"after all\" hook in \"API Endpoints Testing\"",
+              "timedOut": false,
+              "duration": 528,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(35000);\nawait Product.deleteMany({});\nawait Activity.deleteMany({});\nif (fs.existsSync(dummyFilePath)) fs.unlinkSync(dummyFilePath);\nif (fs.existsSync(UPLOAD_ROOT)) {\n  fs.readdirSync(UPLOAD_ROOT).forEach(file => {\n    if (file.endsWith(\".webp\")) fs.unlinkSync(path.join(UPLOAD_ROOT, file));\n  });\n}\nif (mongoose.connection.readyState === 1) await mongoose.connection.close();",
+              "err": {},
+              "uuid": "4360a9cf-3d53-4011-a64d-7708a62bcd5d",
+              "parentUUID": "895d054e-a1bc-463f-b93a-67121b692c33",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "2ab23f20-6376-41b3-b03b-47abf5d9b465",
+              "title": "GET /",
+              "fullFile": "C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\test\\api.test.js",
+              "file": "\\test\\api.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return the base API message (200 OK)",
+                  "fullTitle": "API Endpoints Testing GET / should return the base API message (200 OK)",
+                  "timedOut": false,
+                  "duration": 112,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .get(\"/\")\n  .end((err, res) => {\n    expect(res).to.have.status(200);\n    expect(res.body).to.be.a(\"object\");\n    expect(res.body).to.have.property(\"message\").equal(\"Cognition Berries API\");\n    done();\n  });",
+                  "err": {},
+                  "uuid": "345e6edf-a0e6-40a3-aacf-7291bbf37c12",
+                  "parentUUID": "2ab23f20-6376-41b3-b03b-47abf5d9b465",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "345e6edf-a0e6-40a3-aacf-7291bbf37c12"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 112,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+              "title": "Product Endpoints (Protected)",
+              "fullFile": "C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\test\\api.test.js",
+              "file": "\\test\\api.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return 401 when no token is given",
+                  "fullTitle": "API Endpoints Testing Product Endpoints (Protected) should return 401 when no token is given",
+                  "timedOut": false,
+                  "duration": 21,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .get(\"/api/products\")\n  .end((err, res) => {\n    expect(res).to.have.status(401);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "d3a0ee8a-881a-4c6e-8b94-0a7712f8a56c",
+                  "parentUUID": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should create a new product successfully",
+                  "fullTitle": "API Endpoints Testing Product Endpoints (Protected) should create a new product successfully",
+                  "timedOut": false,
+                  "duration": 82,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const newProduct = { Product_name: \"Test Gadget\", Price: 99.99, Product_id: \"T-001\" };\nrequest(app)\n  .post(\"/api/products\")\n  .set(\"Authorization\", `Bearer ${TEST_AUTH_TOKEN}`)\n  .send(newProduct)\n  .end((err, res) => {\n    expect(res).to.satisfy(\n      (res) => res.status === 201 || res.status === 400,\n      `Expected 201 or 400 but got ${res.status}`\n    );\n    if (res.body && res.body._id) testProductId = res.body._id;\n    done();\n  });",
+                  "err": {},
+                  "uuid": "39022bd1-768c-41e0-a430-29c0adab092e",
+                  "parentUUID": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should get a product by ID",
+                  "fullTitle": "API Endpoints Testing Product Endpoints (Protected) should get a product by ID",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "if (!testProductId) return done(); // skip if product wasn't created\nrequest(app)\n  .get(`/api/products/${testProductId}`)\n  .set(\"Authorization\", `Bearer ${TEST_AUTH_TOKEN}`)\n  .end((err, res) => {\n    expect(res).to.have.status(200);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "d59b88af-c0c0-415c-9304-115a726728d5",
+                  "parentUUID": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 404 for a non-existent product ID",
+                  "fullTitle": "API Endpoints Testing Product Endpoints (Protected) should return 404 for a non-existent product ID",
+                  "timedOut": false,
+                  "duration": 31,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const fakeId = \"60c728b97c27d42e2c56a789\";\nrequest(app)\n  .get(`/api/products/${fakeId}`)\n  .set(\"Authorization\", `Bearer ${TEST_AUTH_TOKEN}`)\n  .end((err, res) => {\n    expect(res).to.have.status(404);\n    done();\n  });",
+                  "err": {
+                    "message": "AssertionError: expected Response{ _events: {}, …(35), …(2) } to have status code 404 but got 500",
+                    "estack": "AssertionError: expected Response{ _events: {}, …(35), …(2) } to have status code 404 but got 500\n    at file:///C:/Users/27815/Desktop/everything_Nicka/AirStride0.3/actual-back-end/test/api.test.js:122:31\n    at Request.callback (node_modules\\superagent\\lib\\node\\index.js:857:12)\n    at C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\node_modules\\superagent\\lib\\node\\index.js:1070:18\n    at IncomingMessage.<anonymous> (node_modules\\superagent\\lib\\node\\parsers\\json.js:21:7)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)",
+                    "diff": "- 500\n+ 404\n"
+                  },
+                  "uuid": "0a65b8ba-62b4-4414-aadf-ca877036063f",
+                  "parentUUID": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should upload a product image",
+                  "fullTitle": "API Endpoints Testing Product Endpoints (Protected) should upload a product image",
+                  "timedOut": false,
+                  "duration": 72,
+                  "state": "passed",
+                  "speed": "medium",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .post(\"/api/products/upload\")\n  .set(\"Authorization\", `Bearer ${TEST_AUTH_TOKEN}`)\n  .attach(\"images\", dummyFilePath, \"dummy-image.png\")\n  .end((err, res) => {\n    expect(res).to.satisfy(\n      (res) => res.status === 200 || res.status === 500,\n      `Expected 200 or 500 but got ${res.status}`\n    );\n    done();\n  });",
+                  "err": {},
+                  "uuid": "6c70b664-897c-4070-89a5-04ef8c91ddc8",
+                  "parentUUID": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 400 if no file uploaded",
+                  "fullTitle": "API Endpoints Testing Product Endpoints (Protected) should return 400 if no file uploaded",
+                  "timedOut": false,
+                  "duration": 16,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .post(\"/api/products/upload\")\n  .set(\"Authorization\", `Bearer ${TEST_AUTH_TOKEN}`)\n  .end((err, res) => {\n    expect(res).to.have.status(400);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "b11fc35e-3ba3-4c8f-b4f6-71908b4de19e",
+                  "parentUUID": "83cb5ffa-6f9c-4f9c-b35b-8d659e524c9a",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "d3a0ee8a-881a-4c6e-8b94-0a7712f8a56c",
+                "39022bd1-768c-41e0-a430-29c0adab092e",
+                "d59b88af-c0c0-415c-9304-115a726728d5",
+                "6c70b664-897c-4070-89a5-04ef8c91ddc8",
+                "b11fc35e-3ba3-4c8f-b4f6-71908b4de19e"
+              ],
+              "failures": [
+                "0a65b8ba-62b4-4414-aadf-ca877036063f"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 222,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "c9a5f879-a905-4d97-84e7-0da8c461e260",
+              "title": "Activity Endpoints",
+              "fullFile": "C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\test\\api.test.js",
+              "file": "\\test\\api.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should log an activity",
+                  "fullTitle": "API Endpoints Testing Activity Endpoints should log an activity",
+                  "timedOut": false,
+                  "duration": 113,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .post(\"/api/activity\")\n  .send(activityPayload)\n  .end((err, res) => {\n    expect(res).to.have.status(201);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "81c17630-a532-4eee-a7d7-0b4552be9499",
+                  "parentUUID": "c9a5f879-a905-4d97-84e7-0da8c461e260",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should get all activities",
+                  "fullTitle": "API Endpoints Testing Activity Endpoints should get all activities",
+                  "timedOut": false,
+                  "duration": 197,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .get(\"/api/activity\")\n  .end((err, res) => {\n    expect(res).to.have.status(200);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "81c488ee-8cdf-4633-92fb-f9eada8ab49a",
+                  "parentUUID": "c9a5f879-a905-4d97-84e7-0da8c461e260",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should get activity stats",
+                  "fullTitle": "API Endpoints Testing Activity Endpoints should get activity stats",
+                  "timedOut": false,
+                  "duration": 393,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .get(\"/api/activity/stats\")\n  .end((err, res) => {\n    expect(res).to.have.status(200);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "83b0a4f3-0226-4c33-8d88-5cc8968d9c81",
+                  "parentUUID": "c9a5f879-a905-4d97-84e7-0da8c461e260",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "81c17630-a532-4eee-a7d7-0b4552be9499",
+                "81c488ee-8cdf-4633-92fb-f9eada8ab49a",
+                "83b0a4f3-0226-4c33-8d88-5cc8968d9c81"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 703,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            },
+            {
+              "uuid": "3ea79396-1853-4ef2-ad5e-642d331294b9",
+              "title": "Error Handling",
+              "fullFile": "C:\\Users\\27815\\Desktop\\everything_Nicka\\AirStride0.3\\actual-back-end\\test\\api.test.js",
+              "file": "\\test\\api.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return 404 for unknown routes",
+                  "fullTitle": "API Endpoints Testing Error Handling should return 404 for unknown routes",
+                  "timedOut": false,
+                  "duration": 8,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request(app)\n  .get(\"/api/unknown\")\n  .end((err, res) => {\n    expect(res).to.have.status(404);\n    done();\n  });",
+                  "err": {},
+                  "uuid": "72bf5ed9-56b5-40f0-bc2b-90000d7f931d",
+                  "parentUUID": "3ea79396-1853-4ef2-ad5e-642d331294b9",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "72bf5ed9-56b5-40f0-bc2b-90000d7f931d"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 8,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 30000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "api-test-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "test-report",
+        "reportFilename": "api-test-report",
+        "html": "true",
+        "overwrite": "true"
+      },
+      "version": "6.3.0"
+    }
+  }
+}
