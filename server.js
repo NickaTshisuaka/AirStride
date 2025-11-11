@@ -9,7 +9,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 import base64 from 'base-64'; // for decoding Basic Auth header
 import bcrypt from 'bcryptjs'; // for hashing passwords
 import cors from 'cors'
-import admin from 'firebase-admin'
+// import admin from 'firebase-admin'
 import fs from "fs";
 // axios is installed per requirement but not used here. It is useful if you want to call other APIs.
 
@@ -24,9 +24,9 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
-const serviceAccount = JSON.parse(
-  fs.readFileSync("./airstride-3317d-firebase-adminsdk-fbsvc-1163621a02.json","utf8")
-);
+// const serviceAccount = JSON.parse(
+//   fs.readFileSync("./airstride-3317d-firebase-adminsdk-fbsvc-1163621a02.json","utf8")
+// );
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
