@@ -13,22 +13,14 @@ dotenv.config();
 const app = express();
 
 // Middleware
+import cors from "cors";
+
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    const allowedOrigins = [
-      "http://localhost:5173",
-      "https://airstride.co.za",
-      "http://www.airstride.co.za",
-      "http://www.airstride0.3.co.za",
-      "http://airstride0.3.co.za.s3-website-us-east-1.amazonaws.com",
-      "http://www.airstride0.3.co.za.s3-website-us-east-1.amazonaws.com",
-      "null",
-    ];
-    return allowedOrigins.includes(origin) ? callback(null, true) : callback(null, false);
-  },
-  credentials: true,
+  origin: "*", 
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
 app.options("*", cors());
 
 
