@@ -129,17 +129,15 @@ app.use(
     origin: (origin, cb) => {
       // allow requests with no origin like curl/postman
       if (!origin) return cb(null, true);
-      const allowed = [
+      const allowedOrigins = [
   "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  "http://www.airstride0.3.co.za.s3-website-us-east-1.amazonaws.com",
-  "http://3.210.9.239",
-  "http://3.210.9.239:5000",
-  "http://airstride0.3.co.za",
-  "http://www.airstride0.3.co.za"
+  "https://airstride.co.za",
+  "http://www.airstride.co.za",
+  "http://airstride0.3.co.za.s3-website-us-east-1.amazonaws.com",
+  "http://www.airstride0.3.co.za.s3-website-us-east-1.amazonaws.com"
 ];
 
-      if (allowed.indexOf(origin) !== -1) return cb(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) return cb(null, true);
       return cb(new Error('Not allowed by CORS'));
     },
     credentials: true,
