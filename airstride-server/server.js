@@ -13,14 +13,28 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(express.json());
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://airstride.co.za",
-    "http://airstride0.3.co.za.s3-website-us-east-1.amazonaws.com"
-  ]
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://airstride.co.za",
+        "http://www.airstride.co.za",
+        "http://airstride0.3.co.za.s3-website-us-east-1.amazonaws.com",
+        "http://www.airstride0.3.co.za.s3-website-us-east-1.amazonaws.com",
+        "null", // for some static site requests
+      ];
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // if you need cookies/auth headers
+  })
+);
+
 
 // Routes
 app.use("/api/products", productRoutes);
