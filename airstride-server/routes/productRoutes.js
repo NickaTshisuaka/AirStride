@@ -10,9 +10,12 @@ import {
 
 const router = express.Router();
 
-router.get("/", firebaseAuth, getAllProducts);
+// PUBLIC ROUTES
+router.get("/", getAllProducts);
+router.get("/:id", getProductById);
+
+// PROTECTED ROUTES
 router.post("/", firebaseAuth, createProduct);
-router.get("/:id", firebaseAuth, getProductById);
 router.put("/:id", firebaseAuth, updateProduct);
 router.delete("/:id", firebaseAuth, deleteProduct);
 
